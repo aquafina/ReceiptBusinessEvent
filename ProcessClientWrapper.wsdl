@@ -1,0 +1,21 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ProcessClient"
+     targetNamespace="http://oracle.com/sca/soapservice/GrnApprovalWorkflow/GrnApproval/ProcessClient"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://oracle.com/sca/soapservice/GrnApprovalWorkflow/GrnApproval/ProcessClient"
+     xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    >
+    <plnk:partnerLinkType name="WS_GrnProcessClient">
+        <plnk:role name="callback_ptt_iceman">
+            <plnk:portType name="tns:callback_ptt_iceman"/>
+        </plnk:role>
+        <plnk:role name="process_client_ptt">
+            <plnk:portType name="tns:process_client_ptt"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://oracle.com/sca/soapservice/GrnApprovalWorkflow/GrnApproval/ProcessClient"
+         location="http://fmw.nishat.net:8001/soa-infra/services/default/GrnApproval/ProcessClient.wsdl"/>
+</wsdl:definitions>

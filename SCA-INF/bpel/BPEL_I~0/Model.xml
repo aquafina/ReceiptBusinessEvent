@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="BPEL_Invoker" targetNamespace="http://xmlns.oracle.com/ReceiptActivityBusinessEvent/ReceiptActivityBusinessEvent/BPEL_Invoker" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/ReceiptActivityBusinessEvent/ReceiptActivityBusinessEvent/BPEL_Invoker" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/apps/ReceiptActivityBusinessEvent/ReceiptActivityBusinessEvent/BusinessEventOutBound" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:ns2="http://oracle.com/sca/soapservice/GrnApprovalWorkflow/GrnApproval/ProcessClient" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" id="BpPrc0">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <partnerLink name="BusinessEventOutBound" partnerLinkType="ns1:DEQUEUE_plt" myRole="DEQUEUE_role"/>
+    <partnerLink name="WS_GrnProcessClient" partnerLinkType="ns2:WS_GrnProcessClient" partnerRole="process_client_ptt" myRole="callback_ptt_iceman"/>
+  </partnerLinks>
+  <variables>
+    <variable name="ReceiveBusinessEvent_DEQUEUE_InputVariable" messageType="ns1:WF_EVENT_T_msg"/>
+    <variable name="Invoke_WS_GrnProcessClient_start_process_InputVariable" messageType="ns2:requestMessage"/>
+  </variables>
+  <sequence name="main" id="BpSeq0">
+    <receive name="ReceiveBusinessEvent" createInstance="yes" variable="ReceiveBusinessEvent_DEQUEUE_InputVariable" partnerLink="BusinessEventOutBound" portType="ns1:DEQUEUE_ptt" operation="DEQUEUE" id="BpRcv0"/>
+    <assign name="Transform1" id="BpAss0">
+      <bpelx:annotation>
+        <bpelx:pattern>transformation</bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from expression="ora:doXSLTransformForDoc('xsl/Transformation_1.xsl', $ReceiveBusinessEvent_DEQUEUE_InputVariable.WF_EVENT_T)"/>
+        <to variable="Invoke_WS_GrnProcessClient_start_process_InputVariable" part="data"/>
+      </copy>
+    </assign>
+    <invoke name="Invoke_WS_GrnProcessClient" inputVariable="Invoke_WS_GrnProcessClient_start_process_InputVariable" partnerLink="WS_GrnProcessClient" portType="ns2:process_client_ptt" operation="start_process" bpelx:invokeAsDetail="no" id="BpInv0"/>
+  </sequence>
+</process><!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Fri Mar 18 09:10:23 PKT 2016
+  Author:  kaka
+  Type: BPEL 1.1 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
