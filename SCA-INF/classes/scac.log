@@ -1,0 +1,24 @@
+Apr 19, 2016 3:24:28 PM oracle.mds
+NOTIFICATION: PManager instance is created without multitenancy support as JVM flag "oracle.multitenant.enabled" is not set to enable multitenancy support.
+Apr 19, 2016 3:24:28 PM oracle.security.jps.internal.config.xml.XmlConfigurationFactory initDefaultConfiguration
+SEVERE: java.io.FileNotFoundException: .\config\jps-config.xml (The system cannot find the path specified)
+Apr 19, 2016 3:24:28 PM oracle.mds
+NOTIFICATION: Auditing is disabled for component MDS.
+Apr 19, 2016 3:24:31 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
+INFO: XMLSchema incremental build enabled.
+Apr 19, 2016 3:24:34 PM com.collaxa.cube.CubeLogger info
+INFO: validating "BPEL_Invoker.bpel" ...
+Apr 19, 2016 3:24:34 PM oracle.integration.platform.blocks.FabricConfigManager <clinit>
+WARNING: JRF is unable to determine the current application server platform.
+Apr 19, 2016 3:24:34 PM oracle.integration.platform.blocks.WLSPlatformConfigurationProvider <clinit>
+WARNING: JRF is unable to determine the current application server platform.
+Apr 19, 2016 3:24:36 PM com.collaxa.cube.CubeLogger info
+INFO: Composed "BPEL_Invoker" in 123.0 milliseconds [nodes 6=0+6, 48.8 nodes/sec]
+Apr 19, 2016 3:24:50 PM com.collaxa.cube.CubeLogger info
+INFO: Compiled "BPEL_Invoker" in 13.691 seconds
+Apr 19, 2016 3:24:50 PM com.collaxa.cube.CubeLogger info
+INFO: Gathered 3 files in 2.4 milliseconds
+
+Apr 19, 2016 3:24:50 PM com.collaxa.cube.CubeLogger info
+INFO: Packaged "BPEL_Invoker" in 89.6 milliseconds
+
